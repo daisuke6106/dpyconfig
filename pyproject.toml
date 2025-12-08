@@ -17,3 +17,10 @@ license-files = ["LICEN[CS]E*"]
 [project.urls]
 Homepage = "https://github.com/pypa/sampleproject"
 Issues = "https://github.com/pypa/sampleproject/issues"
+
+[tool.pytest.ini_options]
+# pytestの設定
+# minversion = "8.0"
+# addopts = "-v --color=yes --cov=src/myapp --cov-report=term-missing"
+pythonpath = ["src/dpyconfig"]
+testpaths = ["tests/dpyconfig"]

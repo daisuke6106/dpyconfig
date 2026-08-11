@@ -46,3 +46,15 @@ class DPyYamlConfigFileLoadFaileException(DPyConfigException):
             message (str): 例外メッセージ
         """
         super().__init__(message, org_exception)
+
+
+class DPyIniConfigFileLoadFaileException(DPyConfigException):
+    """INI設定ファイル読み込み失敗例外クラス
+    """
+
+    def __init__(self, message, org_exception: Exception = None):
+        """コンストラクタ
+        Args:
+            message (str): 例外メッセージ
+        """
+        super().__init__(message, org_exception)

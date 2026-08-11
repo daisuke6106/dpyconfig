@@ -74,8 +74,8 @@ def test_constractor_nested_dict():
     assert str(nd) == str(data)
 
 
-def test_constractor_deeply_nested_dict():
-    """ コンストラクタのテスト（深くネストされた辞書）
+def test_constractor_deeply_nested_dict_single_branch():
+    """ コンストラクタのテスト（深くネストされた辞書、単一チェーン）
 
     """
     data = {
@@ -106,8 +106,8 @@ def test_constractor_deeply_nested_dict():
     assert str(nd) == str(data)
 
 
-def test_constractor_deeply_nested_dict():
-    """ コンストラクタのテスト（深くネストされた辞書）
+def test_constractor_deeply_nested_dict_multi_branch():
+    """ コンストラクタのテスト（深くネストされた辞書、複数分岐）
 
     """
     data = {

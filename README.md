@@ -1,46 +1,54 @@
-# Pythonパッケージテンプレート
-本プロジェクトはパッケージングできるpythonプロジェクトを作成するときに使用するテンプレートです。
+# dpyconfig
+本プロジェクトはconfigファイルを読み込んでその設定を取り出すことが可能なライブラリです。
 
-## Build
-以下にてビルドを実施
+読み込み可能なファイルは以下の通り
+
+## 読み込み可能なファイル
+
+### ini, cnf, config
+
+キー=値として記述されたファイルを読み込む。
+
+例）example.config
 
 ```
-./build.sh
+AAA=BBB
+```
+ 
+### yml, yaml
+
+yamlファイルとしてい読み込む
+例）example.yaml
+```
+AAA: BBB
 ```
 
-## Install
-以下にてインストールを実施
+## 機能
 
-```
-pip install python_package_project_template-0.0.1-py3-none-any.whl
-```
+### INCLUDE指定
+ファイルにINCLUDE+ファイルパスを指定することで複数ファイルに跨る設定を読み込むことができます。
+
+### 静的読み込み、動的読み込み
+ファイルを読み込む際に、静的に読み込みか、動的に読み込みかを指定することで
+プロセスが稼働中に設定ファイルが変更された際の挙動を指定できます。
+
+#### 静的な場合
+プロセスが稼働している最中にファイルの記載内容が変わったとしても再読込は行いません。
+
+#### 動的な場合
+プロセスが稼働している最中にファイルに記載内容が変わった場合、再読込が行われプロセスからgetした際には最新の値で取得されます。
+※背景処理としてデーモンスレッドが指定時間毎（デフォルト１分、オプションとして秒単位で指定可能）にファイルのタイムスタンプを監視しており、タイムスタンプが変わった場合そのファイルの再読込を実施します。
 
 ## How to use
 
 ```
-from example_package import example
-example.add_one(1)
+# 静的読み込みの場合
+config = ConfigFile.load("./example.conf")
+aaa = config.get_str("AAA")
+print(aaa) # BBB
+
+# 動的読み込みの場合
+config = ConfigFile.dynamic_load("./example.conf")
+aaa = config.get_str("AAA")
+print(aaa) # BBB
 ```
-
-## Clone this
-このリポジトリを関係を保持したままCloneする
-```
-# 前提
-GitHubにて空のリポジトリ作成
-
-# 変数定義
-UPSTREAM_REPOSITORY_NAME="python_package_project_template"
-UPSTREAM_REPOSITORY_URL="git@github.com:daisuke6106/${UPSTREAM_REPOSITORY_NAME}.git"
-NEW_REPOSITORY_NAME="NewRepName"
-NEW_REPOSITORY_URL="git@github.com:daisuke6106/${NEW_REPOSITORY_NAME}.git"
-
-# クローン->Push
-git clone ${UPSTREAM_REPOSITORY_URL} ${NEW_REPOSITORY_NAME}
-cd ${NEW_REPOSITORY_NAME}
-git remote add     upstream ${UPSTREAM_REPOSITORY_URL}
-git remote set-url origin   ${NEW_REPOSITORY_URL}
-git branch -M main
-git push -u origin main
-```
-
-[参考１](https://packaging.python.org/ja/latest/tutorials/packaging-projects/)

@@ -1,6 +1,6 @@
-from configfile import ConfigFile, YamlConfigFile, IniConfigFile
+from dpyconfig.configfile import ConfigFile, YamlConfigFile, IniConfigFile
 from pathlib import Path
-from exception.dpyconfigexception import (
+from dpyconfig.exception.dpyconfigexception import (
     DPyConfigFileNotFoundException,
     DPyYamlConfigFileLoadFaileException,
     DPyIniConfigFileLoadFaileException,
@@ -1101,7 +1101,7 @@ def test_dynamic_load_returns_dynamic_config_file(tmp_path: Path):
     # ====================================================================================================
     # データ作成
     # ====================================================================================================
-    from dynamicconfigfile import DynamicConfigFile
+    from dpyconfig.dynamicconfigfile import DynamicConfigFile
     config_path = tmp_path / "config.yaml"
     config_path.write_text("AAA: BBB\n", encoding="utf-8")
 

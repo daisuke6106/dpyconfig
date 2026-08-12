@@ -1,4 +1,4 @@
-from nesteddictonary import NestedDictionary
+from dpyconfig.nesteddictonary import NestedDictionary
 
 
 def test_constractor_empty():

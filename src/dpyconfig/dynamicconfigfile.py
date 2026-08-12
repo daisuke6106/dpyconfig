@@ -1,6 +1,6 @@
 import os
 import threading
-from configfile import ConfigFile
+from .configfile import ConfigFile
 
 
 class DynamicConfigFile(ConfigFile):

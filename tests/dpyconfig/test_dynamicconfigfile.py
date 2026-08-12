@@ -4,9 +4,9 @@ from pathlib import Path
 
 import pytest
 
-from configfile import ConfigFile
-from dynamicconfigfile import DynamicConfigFile
-from exception.dpyconfigexception import DPyYamlConfigFileLoadFaileException
+from dpyconfig.configfile import ConfigFile
+from dpyconfig.dynamicconfigfile import DynamicConfigFile
+from dpyconfig.exception.dpyconfigexception import DPyYamlConfigFileLoadFaileException
 
 
 def _wait_until(predicate, timeout: float = 2.0, interval: float = 0.02) -> bool:

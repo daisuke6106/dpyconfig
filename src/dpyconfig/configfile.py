@@ -3,8 +3,8 @@ import os
 import re
 import yaml
 import configparser
-from nesteddictonary import NestedDictionary
-from exception.dpyconfigexception import (
+from .nesteddictonary import NestedDictionary
+from .exception.dpyconfigexception import (
     DPyConfigFileNotFoundException,
     DPyYamlConfigFileLoadFaileException,
     DPyIniConfigFileLoadFaileException,
@@ -64,7 +64,7 @@ class ConfigFile(ABC):
             )
         # dynamicconfigfile と configfile は相互に参照し合うため、
         # モジュールトップレベルではなく遅延importで循環importを回避する
-        from dynamicconfigfile import DynamicConfigFile
+        from .dynamicconfigfile import DynamicConfigFile
         return DynamicConfigFile(config_file_path, interval_seconds)
 
     def __init__(self, config_file_path: str):

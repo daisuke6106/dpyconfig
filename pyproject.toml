@@ -32,5 +32,5 @@ Issues = "https://github.com/daisuke6106/dpyconfig/issues"
 # pytestの設定
 # minversion = "8.0"
 # addopts = "-v --color=yes --cov=src/myapp --cov-report=term-missing"
-pythonpath = ["src/dpyconfig"]
+pythonpath = ["src"]
 testpaths = ["tests/dpyconfig"]

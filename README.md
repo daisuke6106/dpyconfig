@@ -39,9 +39,18 @@ AAA: BBB
 プロセスが稼働している最中にファイルに記載内容が変わった場合、再読込が行われプロセスからgetした際には最新の値で取得されます。
 ※背景処理としてデーモンスレッドが指定時間毎（デフォルト１分、オプションとして秒単位で指定可能）にファイルのタイムスタンプを監視しており、タイムスタンプが変わった場合そのファイルの再読込を実施します。
 
+## How to insrall
+
+```
+pip install dpyconfig
+```
+
 ## How to use
 
 ```
+# import文
+from dpyconfig.configfile import ConfigFile
+
 # 静的読み込みの場合
 config = ConfigFile.load("./example.conf")
 aaa = config.get_str("AAA")

@@ -123,13 +123,13 @@ CHILD2: child2
 
 ## How to insrall
 
-```
-pip install dpyconfig
+```bash
+pip install git+https://github.com/daisuke6106/dpyconfig.git
 ```
 
 ## How to use
 
-```
+```python
 # import文
 from dpyconfig.configfile import ConfigFile
 

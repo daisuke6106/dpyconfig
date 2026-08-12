@@ -20,7 +20,7 @@ AAA=BBB
  
 ### yml, yaml
 
-yamlファイルとしてい読み込む
+yamlファイルとして読み込む
 
 例）example.yaml
 ```yaml:example.yaml
@@ -121,7 +121,7 @@ CHILD2: child2
 プロセスが稼働している最中にファイルに記載内容が変わった場合、再読込が行われプロセスからgetした際には最新の値で取得される。
 ※背景処理としてデーモンスレッドが指定時間毎（デフォルト１分、オプションとして秒単位で指定可能）にファイルのタイムスタンプを監視しており、タイムスタンプが変わった場合そのファイルの再読込を実施。
 
-## How to insrall
+## How to install
 
 ```bash
 pip install git+https://github.com/daisuke6106/dpyconfig.git

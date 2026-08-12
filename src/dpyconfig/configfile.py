@@ -179,8 +179,8 @@ class IniConfigFile(ConfigFile):
     内部的には番兵セクションを補ってから configparser に渡す。
     """
 
-    #: 単独行での `INCLUDE+ファイルパス` ディレクティブを検出する正規表現
-    _INCLUDE_PATTERN = re.compile(r"^INCLUDE\+(.+)$")
+    #: 単独行での `INCLUDE=ファイルパス` ディレクティブを検出する正規表現
+    _INCLUDE_PATTERN = re.compile(r"^INCLUDE=(.+)$")
 
     def __init__(self, config_file_path: str):
         super().__init__(config_file_path)
@@ -191,7 +191,7 @@ class IniConfigFile(ConfigFile):
         with open(config_file_path, 'r', encoding='utf-8') as f:
             text = f.read()
         try:
-            # INCLUDE+ディレクティブを、対象ファイルの中身でテキスト展開する
+            # INCLUDE=ディレクティブを、対象ファイルの中身でテキスト展開する
             expanded_text = self._expand_includes(text)
             # セクションヘッダの無いトップレベル記述を受け付けるため、
             # 番兵セクションを先頭に注入してからパースする
@@ -211,13 +211,13 @@ class IniConfigFile(ConfigFile):
             )
 
     def _expand_includes(self, text: str) -> str:
-        """INCLUDE+ディレクティブを再帰的に展開する
+        """INCLUDE=ディレクティブを再帰的に展開する
 
         Args:
             text (str): 展開対象のテキスト
 
         Returns:
-            str: INCLUDE+行を、対象ファイルの中身に置き換えたテキスト
+            str: INCLUDE=行を、対象ファイルの中身に置き換えたテキスト
         """
         lines = []
         for line in text.splitlines():

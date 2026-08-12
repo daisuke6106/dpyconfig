@@ -790,7 +790,7 @@ def test_ini_load_key_case_is_preserved(tmp_path: Path):
 
 
 def test_ini_load_include_single_files(tmp_path: Path):
-    """ INCLUDE+機能で他のiniファイルを読み込めること
+    """ INCLUDE=機能で他のiniファイルを読み込めること
 
     Args:
         tmp_path (Path): _description_
@@ -804,7 +804,7 @@ def test_ini_load_include_single_files(tmp_path: Path):
     main_path = tmp_path / "config.ini"
     with main_path.open(mode="a", encoding="utf-8") as f:
         f.write("AAA=BBB\n")
-        f.write(f"INCLUDE+{included_path}\n")
+        f.write(f"INCLUDE={included_path}\n")
 
     # ====================================================================================================
     # テスト実行
@@ -820,7 +820,7 @@ def test_ini_load_include_single_files(tmp_path: Path):
 
 
 def test_ini_load_include_muiti_files(tmp_path: Path):
-    """ INCLUDE+機能で他のiniファイルを読み込めること（複数）
+    """ INCLUDE=機能で他のiniファイルを読み込めること（複数）
 
     Args:
         tmp_path (Path): _description_
@@ -837,8 +837,8 @@ def test_ini_load_include_muiti_files(tmp_path: Path):
     main_path = tmp_path / "config.ini"
     with main_path.open(mode="a", encoding="utf-8") as f:
         f.write("AAA=BBB\n")
-        f.write(f"INCLUDE+{included_path_a}\n")
-        f.write(f"INCLUDE+{included_path_b}\n")
+        f.write(f"INCLUDE={included_path_a}\n")
+        f.write(f"INCLUDE={included_path_b}\n")
 
     # ====================================================================================================
     # テスト実行
@@ -855,7 +855,7 @@ def test_ini_load_include_muiti_files(tmp_path: Path):
 
 
 def test_ini_load_include_muiti_stage_files(tmp_path: Path):
-    """ INCLUDE+機能で他のiniファイルを読み込めること（多段）
+    """ INCLUDE=機能で他のiniファイルを読み込めること（多段）
 
     Args:
         tmp_path (Path): _description_
@@ -869,12 +869,12 @@ def test_ini_load_include_muiti_stage_files(tmp_path: Path):
     included_path_b = tmp_path / "included_b.ini"
     with included_path_b.open(mode="a", encoding="utf-8") as f:
         f.write("INC_KEY_B=inc_value_b\n")
-        f.write(f"INCLUDE+{included_path_a}\n")
+        f.write(f"INCLUDE={included_path_a}\n")
 
     main_path = tmp_path / "config.ini"
     with main_path.open(mode="a", encoding="utf-8") as f:
         f.write("AAA=BBB\n")
-        f.write(f"INCLUDE+{included_path_b}\n")
+        f.write(f"INCLUDE={included_path_b}\n")
 
     # ====================================================================================================
     # テスト実行
@@ -891,7 +891,7 @@ def test_ini_load_include_muiti_stage_files(tmp_path: Path):
 
 
 def test_ini_load_include_overridden_by_local_key(tmp_path: Path):
-    """ INCLUDE+で読み込んだキーを、それより後に書かれたローカルのキーで上書き（後勝ち）できること
+    """ INCLUDE=で読み込んだキーを、それより後に書かれたローカルのキーで上書き（後勝ち）できること
 
     Args:
         tmp_path (Path): _description_
@@ -904,7 +904,7 @@ def test_ini_load_include_overridden_by_local_key(tmp_path: Path):
 
     main_path = tmp_path / "config.ini"
     with main_path.open(mode="a", encoding="utf-8") as f:
-        f.write(f"INCLUDE+{included_path}\n")
+        f.write(f"INCLUDE={included_path}\n")
         f.write("KEY=FromLocal\n")
 
     # ====================================================================================================

@@ -1,9 +1,44 @@
 # dpyconfig
+
 本プロジェクトはconfigファイルを読み込んでその設定を取り出すことが可能なライブラリ。
 
-読み込み可能なファイルは以下の通り
+## 目次
 
-## 読み込み可能なファイル
+- [How to install](#how-to-install)
+- [How to use](#how-to-use)
+- [対応ファイル形式](#対応ファイル形式)
+  - [ini, cnf, config](#ini-cnf-config)
+  - [yml, yaml](#yml-yaml)
+- [機能](#機能)
+  - [INCLUDE指定](#include指定)
+  - [静的読み込み、動的読み込み](#静的読み込み動的読み込み)
+
+## How to install
+
+```bash
+pip install git+https://github.com/daisuke6106/dpyconfig.git
+```
+
+## How to use
+
+```python
+# import文
+from dpyconfig.configfile import ConfigFile
+
+# 静的読み込みの場合
+config = ConfigFile.load("./example.conf")
+aaa = config.get_str("AAA")
+print(aaa) # BBB
+
+# 動的読み込みの場合
+config = ConfigFile.dynamic_load("./example.conf")
+aaa = config.get_str("AAA")
+print(aaa) # BBB
+```
+
+## 対応ファイル形式
+
+読み込み可能なファイルは以下の通り
 
 ### ini, cnf, config
 
@@ -17,7 +52,7 @@
 # ================================================
 AAA=BBB
 ```
- 
+
 ### yml, yaml
 
 yamlファイルとして読み込む
@@ -120,26 +155,3 @@ CHILD2: child2
 #### 動的な場合
 プロセスが稼働している最中にファイルに記載内容が変わった場合、再読込が行われプロセスからgetした際には最新の値で取得される。
 ※背景処理としてデーモンスレッドが指定時間毎（デフォルト１分、オプションとして秒単位で指定可能）にファイルのタイムスタンプを監視しており、タイムスタンプが変わった場合そのファイルの再読込を実施。
-
-## How to install
-
-```bash
-pip install git+https://github.com/daisuke6106/dpyconfig.git
-```
-
-## How to use
-
-```python
-# import文
-from dpyconfig.configfile import ConfigFile
-
-# 静的読み込みの場合
-config = ConfigFile.load("./example.conf")
-aaa = config.get_str("AAA")
-print(aaa) # BBB
-
-# 動的読み込みの場合
-config = ConfigFile.dynamic_load("./example.conf")
-aaa = config.get_str("AAA")
-print(aaa) # BBB
-```
